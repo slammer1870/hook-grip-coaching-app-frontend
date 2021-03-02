@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import { useContext } from 'react';
 import AuthContext from '../context/AuthContext';
-import ExecLogo from '../icons/ExecLogo';
+import Logo from '../icons/Logo';
 import Link from 'next/link';
 
 const Navbar = ({ handleAccount }) => {
@@ -15,7 +15,7 @@ const Navbar = ({ handleAccount }) => {
         <div className="w-screen flex p-6 justify-between bg-white">
             <Link href="/">
                 <a>
-                    <ExecLogo />
+                    <Logo />
                 </a>
             </Link>
             <div>

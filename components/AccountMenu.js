@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { useContext, useEffect, useState } from 'react';
 import CourseScroller from '../components/CourseScroller';
 import AuthContext from '../context/AuthContext';
-import ExecLogo from '../icons/ExecLogo';
+import Logo from '../icons/Logo';
 import ProfileAvatar from '../icons/ProfileAvatar';
 import { API_URL, fromImageToUrl } from '../utils/urls';
 
@@ -45,7 +45,7 @@ const AccountMenu = ({ active, handleAccount }) => {
                 <div className="flex justify-between">
                     <Link href="/">
                         <a>
-                            <ExecLogo />
+                            <Logo />
                         </a>
                     </Link>
 
