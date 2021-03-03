@@ -12,7 +12,7 @@ const Navbar = ({ handleAccount }) => {
     const goToLink = path !== '/' ? path : '/';
 
     return (
-        <div className="w-screen flex p-6 justify-between bg-white">
+        <div className="w-screen flex p-6 justify-between bg-white lg:pr-28">
             <Link href="/">
                 <a>
                     <Logo />
