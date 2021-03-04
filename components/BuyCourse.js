@@ -6,7 +6,7 @@ import BuyButton from './BuyButton'
 
 const BuyCourse = ({ course }) => {
     return (
-                <div className="flex flex-col">
+                <div className="flex flex-col max-w-screen-sm mx-auto">
                     <img alt={course.title} src={fromImageToUrl(course.thumbnail)} classname="w-screen h-auto"/>
                     <div className="p-4">
                         <h1 className="text-xl mb-1">{course.title}</h1>
