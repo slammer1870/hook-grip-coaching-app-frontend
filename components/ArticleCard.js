@@ -8,7 +8,9 @@ const ArticleCard = ({ article }) => {
         <Link href={`/articles/${article.slug}`}>
             <a>
                 <div className="flex flex-col border w-72 h-auto my-6">
-                    <img alt={article.title} src={fromImageToUrl(article.image)} />
+                    <div className="flex h-40 w-full items-center justify-center overflow-hidden">
+                        <img alt={article.title} src={fromImageToUrl(article.image)}  />
+                    </div>
                     <div className="p-4">
                         <h4 className="text-xs uppercase mr-2 mb-2 font-thin text-blue-400">
                             {article.tag}

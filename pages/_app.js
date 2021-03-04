@@ -32,7 +32,7 @@ const MyApp = ({ Component, pageProps }) => {
                 <content className="my-20 pb-20 lg:left-20 lg:absolute lg:pr-28 lg:w-full">
                     <Component {...pageProps} />
                 </content>
-                <nav className="bottom-0 fixed">
+                <nav className="bottom-0 fixed lg:h-screen lg:left-0 lg:top-0">
                     <BottomNav path={path} />
                 </nav>
             </main>
