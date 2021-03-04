@@ -31,7 +31,7 @@ const BuyButton = ({ course }) => {
 
     return (
         <button
-            className="flex bg-blue-500 font-bold text-white w-full py-3 transition duration-300 ease-in-out hover:bg-blue-600 text-center justify-center my-4"
+            className="flex bg-blue-400 font-bold text-white w-full py-3 transition duration-300 ease-in-out hover:bg-blue-500 text-center justify-center my-4"
             onClick={handleBuy}>
             BUY NOW
         </button>

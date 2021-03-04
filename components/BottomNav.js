@@ -16,7 +16,7 @@ const BottomNav = ({ path }) => {
 
     if (path != '/') {
         return (
-            <div className="w-screen flex p-6 justify-between items-center bg-opacity-90 bg-gray-700 ">
+            <div className="w-screen flex p-6 justify-between items-center bg-opacity-90 bg-gray-700 lg:w-20 lg:h-screen lg:flex-col lg:justify-around">
                 <SideMenu active={active} />
                 <Link href="/articles">
                     <a className={path == '/articles' ? '' : 'opacity-30'}>
