@@ -2,7 +2,7 @@ export const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:1337
 
 export const MAGIC_PUBLIC_KEY = process.env.MAGIC_PUBLIC_KEY || 'pk_test_2A97D22CB16C023D';
 
-export const STRIPE_PK = process.env.NEXT_PUBLIC_STRIPE_PK || 'sk_test_1txjIPtYBUuqu9QKdSrdL9ml';
+export const STRIPE_PK = process.env.NEXT_PUBLIC_STRIPE_PK || 'pk_test_qWW9hfd5OAlI6PCydV4hSw7E';
 
 export const fromImageToUrl = (image) => {
     if (!image) {
