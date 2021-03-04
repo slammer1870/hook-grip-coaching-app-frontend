@@ -30,7 +30,7 @@ const useOrders = (user, getToken) => {
                 } catch (err) {
                     setOrders([]);
                 }
-                setLoading(false);
+                //setLoading(false);
             }
         };
 
@@ -63,7 +63,7 @@ const CourseContent = ({ course }) => {
 
     if (loading) {
         return (
-            <div className="p-8 flex flex-col justify-center items-center">
+            <div className="flex flex-col justify-center items-center w-screen h-screen">
                 <FontAwesomeIcon icon={faCircleNotch} size="6x" spin />
                 <h2 className="text-4xl mt-4 animate-pulse">Loading</h2>
             </div>
