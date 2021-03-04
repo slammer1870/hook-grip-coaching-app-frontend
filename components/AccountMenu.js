@@ -41,7 +41,7 @@ const AccountMenu = ({ active, handleAccount }) => {
 
     if (user && active) {
         return (
-            <div className="w-screen h-screen fixed bg-white top-0 flex flex-col p-6">
+            <div className="w-screen h-screen fixed bg-white top-0 flex flex-col p-6 lg:pr-28">
                 <div className="flex justify-between">
                     <Link href="/">
                         <a>
