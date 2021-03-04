@@ -30,7 +30,7 @@ const useOrders = (user, getToken) => {
                 } catch (err) {
                     setOrders([]);
                 }
-                //setLoading(false);
+                setLoading(false);
             }
         };
 
