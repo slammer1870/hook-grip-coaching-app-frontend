@@ -5,7 +5,7 @@ const CourseScroller = ({ course }) => {
   if (course) {
     return (
       <a href={`/courses/${course.slug}`}>
-        <div className="flex flex-col border w-52 h-64 my-4">
+        <div className="flex flex-col border w-52 min-h-64 my-4">
           <div className="flex h-40 w-full items-center justify-center overflow-hidden">
             <img alt={course.title} src={fromImageToUrl(course.thumbnail)} />
           </div>
