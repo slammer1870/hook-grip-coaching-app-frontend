@@ -9,7 +9,7 @@ const CourseScroller = ({ course }) => {
           <div className="flex h-40 w-full items-center justify-center overflow-hidden">
             <img alt={course.title} src={fromImageToUrl(course.thumbnail)} />
           </div>
-          <div className="p-4 flex flex-col">
+          <div className="p-4 flex flex-col h-24">
             <h1 className="text-xl mb-1">{course.title}</h1>
             <p className="text-sm">{course.description}</p>
             <span className="ml-auto">
