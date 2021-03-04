@@ -36,7 +36,8 @@ const Navbar = ({ handleAccount }) => {
                         </svg>
                     </button>
                 ) : (
-                    <button className="border p-1 w-20">Sign In</button>
+                    <Link href="/">
+                    <button className="border p-1 w-20">Sign In</button></Link>
                 )}
             </div>
         </div>
