@@ -12,7 +12,7 @@ const CourseScroller = ({ course }) => {
           <div className="p-4 flex flex-col">
             <h1 className="text-xl mb-1">{course.title}</h1>
             <p className="text-sm">{course.description}</p>
-            <span className="ml-auto pt-12">
+            <span className="ml-auto">
               €{course.price}
             </span>
           </div>
