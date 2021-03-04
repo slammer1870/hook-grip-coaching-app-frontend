@@ -1,6 +1,6 @@
 export const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:1337';
 
-export const MAGIC_PUBLIC_KEY = process.env.MAGIC_PUBLIC_KEY || 'Your Magic Test Key goes Here';
+export const MAGIC_PUBLIC_KEY = process.env.MAGIC_PUBLIC_KEY || 'pk_test_2A97D22CB16C023D';
 
 export const STRIPE_PK = process.env.NEXT_PUBLIC_STRIPE_PK || 'Your Stripe Test Key goes Here';
 
