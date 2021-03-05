@@ -94,8 +94,8 @@ const CourseContent = ({ course }) => {
                 <h2 className="text-2xl p-3 bg-gray-400">{chapter.title}</h2>
                 <ul>
                   {chapter.lesson.map((lesson) => (
-                    <li className="bg-gray-100 p-3 mt-1" key={lesson.id}>
-                      <button value={lesson.url} onClick={handleClick}>
+                    <li key={lesson.id}>
+                      <button value={lesson.url} className="bg-gray-100 w-full text-left p-3 mt-1" onClick={handleClick}>
                         {lesson.name}
                       </button>
                     </li>
