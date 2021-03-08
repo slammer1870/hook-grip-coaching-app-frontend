@@ -10,6 +10,7 @@
     "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc"
   },
   "dependencies": {
+<<<<<<< HEAD
     "@fortawesome/fontawesome-svg-core": "^1.2.34",
     "@fortawesome/free-brands-svg-icons": "^5.15.2",
     "@fortawesome/free-regular-svg-icons": "^5.15.2",
@@ -20,6 +21,12 @@
     "@tailwindcss/typography": "^0.4.0",
     "autoprefixer": "^10.1.0",
     "magic-sdk": "^4.1.1",
+=======
+    "@stripe/stripe-js": "^1.12.1",
+    "@tailwindcss/typography": "^0.4.0",
+    "autoprefixer": "^10.1.0",
+    "magic-sdk": "^4.0.2",
+>>>>>>> ba398a967b269625a4765c67b735b096315a69ae
     "next": "10.0.4",
     "postcss": "^8.2.2",
     "react": "17.0.1",

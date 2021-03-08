@@ -2,7 +2,11 @@ import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import { useContext } from 'react';
 import AuthContext from '../context/AuthContext';
+<<<<<<< HEAD
 import Logo from '../icons/Logo';
+=======
+import ExecLogo from '../icons/ExecLogo';
+>>>>>>> ba398a967b269625a4765c67b735b096315a69ae
 import Link from 'next/link';
 
 const Navbar = ({ handleAccount }) => {
@@ -12,10 +16,17 @@ const Navbar = ({ handleAccount }) => {
     const goToLink = path !== '/' ? path : '/';
 
     return (
+<<<<<<< HEAD
         <div className="w-screen flex p-6 justify-between bg-white lg:pr-28">
             <Link href="/">
                 <a>
                     <Logo />
+=======
+        <div className="w-screen flex p-6 justify-between bg-white">
+            <Link href="/">
+                <a>
+                    <ExecLogo />
+>>>>>>> ba398a967b269625a4765c67b735b096315a69ae
                 </a>
             </Link>
             <div>
@@ -36,8 +47,12 @@ const Navbar = ({ handleAccount }) => {
                         </svg>
                     </button>
                 ) : (
+<<<<<<< HEAD
                     <Link href="/">
                     <button className="border p-1 w-20">Sign In</button></Link>
+=======
+                    <button className="border p-1 w-20">Sign In</button>
+>>>>>>> ba398a967b269625a4765c67b735b096315a69ae
                 )}
             </div>
         </div>
