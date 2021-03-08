@@ -5,7 +5,11 @@ import { API_URL, fromImageToUrl } from '../../utils/urls';
 
 const ArticleContent = ({ article }) => {
     return (
+<<<<<<< HEAD
+        <div className="prose p-6 max-w-screen-md mx-auto">
+=======
         <div className="prose p-6">
+>>>>>>> ba398a967b269625a4765c67b735b096315a69ae
             <h1>{article.title}</h1>
             <img alt={article.title} src={fromImageToUrl(article.image)} />
             <ReactMarkdown source={article.content} escapeHtml={false} />

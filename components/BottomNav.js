@@ -2,6 +2,9 @@ import Link from 'next/link';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import SideMenu from './SideMenu';
+import { faCode, faHighlighter, faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 
 const BottomNav = ({ path }) => {
     const [active, setActive] = useState(false);
@@ -16,7 +19,7 @@ const BottomNav = ({ path }) => {
 
     if (path != '/') {
         return (
-            <div className="w-screen flex p-6 justify-between items-center bg-opacity-90 bg-gray-700 ">
+            <div className="w-screen h-20 flex p-6 justify-between items-center bg-opacity-90 bg-gray-700 lg:w-20 lg:h-screen lg:flex-col lg:justify-around">
                 <SideMenu active={active} />
                 <Link href="/articles">
                     <a className={path == '/articles' ? '' : 'opacity-30'}>

@@ -50,8 +50,13 @@ const Slider = ({ handleDecrement, categories, count, handleIncrement }) => {
                         key={category.id}
                         className={
                             category.title === categories[count].title
+<<<<<<< HEAD
+                                ? 'w-full mx-1 h-1 bg-black'
+                                : 'w-full mx-1 bg-black bg-opacity-25'
+=======
                                 ? 'w-2/12 h-1 bg-black'
                                 : 'w-2/12 h-1 bg-black bg-opacity-25'
+>>>>>>> ba398a967b269625a4765c67b735b096315a69ae
                         }></li>
                 ))}
             </ul>

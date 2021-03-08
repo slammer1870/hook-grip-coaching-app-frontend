@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { useContext, useEffect, useState } from 'react';
 import CourseScroller from '../components/CourseScroller';
 import AuthContext from '../context/AuthContext';
-import ExecLogo from '../icons/ExecLogo';
+import Logo from '../icons/Logo';
 import ProfileAvatar from '../icons/ProfileAvatar';
 import { API_URL, fromImageToUrl } from '../utils/urls';
 
@@ -41,11 +41,11 @@ const AccountMenu = ({ active, handleAccount }) => {
 
     if (user && active) {
         return (
-            <div className="w-screen h-screen fixed bg-white top-0 flex flex-col p-6">
+            <div className="w-screen h-screen fixed bg-white top-0 flex flex-col p-6 lg:pr-28">
                 <div className="flex justify-between">
                     <Link href="/">
                         <a>
-                            <ExecLogo />
+                            <Logo />
                         </a>
                     </Link>
 
