@@ -21,7 +21,7 @@ export default function Home() {
         <div className="flex flex-col items-center justify-center">
             <div className="mt-40">
                 <h1 className="text-gray-800 text-4xl tracking-wider mb-6">
-                    <strong>EXECBJJ</strong> ONLINE
+                    <strong>Hook Grip</strong> Tech
                 </h1>
                 <form onSubmit={handleSubmit}>
                     <p className="mb-6 mt-3 text-3xl font-thin">Enter your email to access</p>
