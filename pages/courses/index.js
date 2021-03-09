@@ -2,7 +2,6 @@ import { useRouter } from "next/router";
 import PropTypes from "prop-types";
 import BuyButton from "../../components/BuyButton";
 import CourseScroller from "../../components/CourseScroller";
-import { API_URL } from "../../utils/urls";
 
 const Courses = ({ courses, categories }) => {
   const router = useRouter();
@@ -61,8 +60,8 @@ export default Courses;
 
 export async function getStaticProps() {
   const [courses, categories] = await Promise.all([
-    fetch(`${API_URL}/courses/`).then((r) => r.json()),
-    fetch(`${API_URL}/course-categories/`).then((r) => r.json()),
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/courses/`).then((r) => r.json()),
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/course-categories/`).then((r) => r.json()),
   ]);
 
   return {

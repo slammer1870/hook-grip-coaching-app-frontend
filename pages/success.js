@@ -1,11 +1,8 @@
 import { useState, useEffect, useContext } from "react";
 import AuthContext from "../context/AuthContext";
 import { useRouter } from "next/router";
-import { API_URL } from "../utils/urls";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
-
-import Link from "next/link";
 
 const useOrder = (session_id) => {
   const [order, setOrder] = useState(null);
@@ -19,7 +16,7 @@ const useOrder = (session_id) => {
         setLoading(true);
         try {
           const token = await getToken();
-          const res = await fetch(`${API_URL}/orders/confirm`, {
+          const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/orders/confirm`, {
             method: "POST",
             body: JSON.stringify({ checkout_session: session_id }),
             headers: {

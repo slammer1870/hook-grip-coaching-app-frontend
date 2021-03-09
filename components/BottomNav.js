@@ -2,8 +2,6 @@ import Link from 'next/link';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import SideMenu from './SideMenu';
-import { faCode, faHighlighter, faEnvelope } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
 const BottomNav = ({ path }) => {

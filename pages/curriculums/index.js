@@ -1,4 +1,3 @@
-import BottomNav from "../../components/BottomNav";
 import { useRouter } from "next/router";
 import { useState } from 'react';
 import BuyButton from "../../components/BuyButton";

@@ -2,7 +2,6 @@ import Link from "next/link";
 import { useContext, useEffect, useState } from "react";
 import CourseScroller from "../components/CourseScroller";
 import AuthContext from "../context/AuthContext";
-import Logo from "../icons/Logo";
 import ProfileAvatar from "../icons/ProfileAvatar";
 import { API_URL, fromImageToUrl } from "../utils/urls";
 
@@ -14,13 +13,12 @@ const useOrders = (user, getToken) => {
       if (user) {
         try {
           const token = await getToken();
-          const order_res = await fetch(`${API_URL}/orders`, {
+          const order_res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/orders`, {
             headers: {
               Authorization: `Bearer ${token}`,
             },
           });
           const data = await order_res.json();
-          console.log(data);
           const paid = data.filter((order) => order.status === "paid");
           setOrders(paid);
         } catch (err) {
@@ -44,7 +42,7 @@ const AccountMenu = ({ active, handleAccount }) => {
       <div className="w-screen h-screen fixed bg-white top-0 flex flex-col p-6 lg:pr-28">
         <div className="flex justify-between">
           <Link href="/">
-            <a>
+            <a onClick={handleAccount}>
               <h1 className="text-2xl font-light">
                 <strong>Hook Grip</strong> Tech
               </h1>

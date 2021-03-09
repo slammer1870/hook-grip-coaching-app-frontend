@@ -9,7 +9,6 @@ const BuyCourse = ({ course }) => {
       <img
         alt={course.title}
         src={fromImageToUrl(course.thumbnail)}
-        classname="w-screen h-auto"
       />
       <div className="p-4 mt-3">
         <h1 className="text-xl mb-1">{course.title}</h1>

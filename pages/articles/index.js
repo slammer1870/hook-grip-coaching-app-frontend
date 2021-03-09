@@ -2,9 +2,7 @@ import { useRouter } from "next/router";
 import PropTypes from "prop-types";
 import { useState } from "react";
 import ArticleCard from "../../components/ArticleCard";
-import BottomNav from "../../components/BottomNav";
 import Slider from "../../components/Slider";
-import { API_URL } from "../../utils/urls";
 
 const Article = ({ articles, categories }) => {
   //const categories = ['guard', 'passing', 'submissions', 'defence'];

@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
 import ReactMarkdown from "react-markdown";
-import styles from "../../styles/Article.module.css";
-import { API_URL, fromImageToUrl } from "../../utils/urls";
+import { fromImageToUrl } from "../../utils/urls";
 
 const ArticleContent = ({ article }) => {
   return (
@@ -23,7 +22,7 @@ ArticleContent.propTypes = {
 export default ArticleContent;
 
 export async function getStaticProps({ params: { slug } }) {
-  const article_res = await fetch(`${API_URL}/articles/?slug=${slug}`);
+  const article_res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/articles/?slug=${slug}`);
   const found = await article_res.json();
 
   return {
@@ -34,7 +33,7 @@ export async function getStaticProps({ params: { slug } }) {
 }
 
 export async function getStaticPaths() {
-  const article_paths = await fetch(`${API_URL}/articles`);
+  const article_paths = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/articles`);
   const articles = await article_paths.json();
 
   return {
