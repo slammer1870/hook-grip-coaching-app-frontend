@@ -7,7 +7,7 @@ const ArticleCard = ({ article }) => {
     return (
         <Link href={`/articles/${article.slug}`}>
             <a>
-                <div className="flex flex-col border w-72 h-auto my-6">
+                <div className="flex flex-col border w-72 h-96 my-6">
                     <div className="flex h-40 w-full items-center justify-center overflow-hidden">
                         <img alt={article.title} src={fromImageToUrl(article.image)}  />
                     </div>

@@ -15,7 +15,7 @@ const Navbar = ({ handleAccount }) => {
         <div className="w-screen flex p-6 justify-between bg-white lg:pr-28">
             <Link href="/">
                 <a>
-                    <Logo />
+                    <h1 className="text-2xl font-light"><strong>Hook Grip</strong> Tech</h1>
                 </a>
             </Link>
             <div>

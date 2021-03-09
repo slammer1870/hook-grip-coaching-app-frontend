@@ -91,11 +91,11 @@ const CourseContent = ({ course }) => {
           <ul className="py-3">
             {course.chapter.map((chapter) => (
               <li key={chapter.id}>
-                <h2 className="text-2xl p-3 bg-gray-400">{chapter.title}</h2>
+                <h2 className="text-2xl p-3 bg-gray-400 text-white mb-1">{chapter.title}</h2>
                 <ul>
                   {chapter.lesson.map((lesson) => (
                     <li key={lesson.id}>
-                      <button value={lesson.url} className="bg-gray-100 w-full text-left p-3 mt-1" onClick={handleClick}>
+                      <button value={lesson.url} className={video === lesson.url ? "bg-gray-300 w-full text-left p-3 mb-1" : "bg-gray-100 w-full text-left p-3 mb-1"} onClick={handleClick}>
                         {lesson.name}
                       </button>
                     </li>

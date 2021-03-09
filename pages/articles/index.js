@@ -44,14 +44,13 @@ const Article = ({ articles, categories }) => {
         />
       </div>
         <div className="flex flex-wrap">
-          {articles
-            .filter(
+          {articles.filter(
               (article) =>
                 article.article_category.title === categories[count].title
             )
             .map((article) => (
-              <div className="mx-auto lg:mx-5">
-                <ArticleCard key={article.id} article={article} />
+              <div className="mx-auto lg:mx-5" key={article.id}>
+                <ArticleCard article={article} />
               </div>
             ))}
         </div>
@@ -74,8 +73,8 @@ export default Article;
 
 export async function getStaticProps() {
   const [articles, categories] = await Promise.all([
-    fetch(`${API_URL}/articles/`).then((r) => r.json()),
-    fetch(`${API_URL}/article-categories/`).then((r) => r.json()),
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/articles/`).then((r) => r.json()),
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/article-categories/`).then((r) => r.json()),
   ]);
 
   return {
