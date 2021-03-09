@@ -2,9 +2,8 @@ import { loadStripe } from '@stripe/stripe-js';
 import PropTypes from 'prop-types';
 import { useContext } from 'react';
 import AuthContext from '../context/AuthContext';
-import { API_URL, STRIPE_PK } from '../utils/urls';
 
-const stripePromise = loadStripe(STRIPE_PK);
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PK);
 
 const BuyButton = ({ course }) => {
     
@@ -14,7 +13,7 @@ const BuyButton = ({ course }) => {
         const stripe = await stripePromise;
         const token = await getToken();
 
-        const res = await fetch(`${API_URL}/orders`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/orders`, {
             method: 'POST',
             body: JSON.stringify({ course }),
             headers: {

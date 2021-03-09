@@ -1,10 +1,7 @@
 import PropTypes from "prop-types";
-import { API_URL } from "../../utils/urls";
 import { useContext, useEffect, useState } from "react";
 import AuthContext from "../../context/AuthContext";
-import BuyButton from "../../components/BuyButton";
 import BuyCourse from "../../components/BuyCourse";
-import styles from "../../styles/Course.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
 
@@ -18,7 +15,7 @@ const useOrders = (user, getToken) => {
         try {
           setLoading(true);
           const token = await getToken();
-          const order_res = await fetch(`${API_URL}/orders`, {
+          const order_res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/orders`, {
             headers: {
               Authorization: `Bearer ${token}`,
             },
@@ -50,8 +47,6 @@ const CourseContent = ({ course }) => {
   const { user, getToken } = useContext(AuthContext);
 
   const { orders, loading } = useOrders(user, getToken);
-
-  console.log(orders);
 
   useEffect(() => {
     if (
@@ -91,11 +86,11 @@ const CourseContent = ({ course }) => {
           <ul className="py-3">
             {course.chapter.map((chapter) => (
               <li key={chapter.id}>
-                <h2 className="text-2xl p-3 bg-gray-400">{chapter.title}</h2>
+                <h2 className="text-2xl p-3 bg-gray-400 text-white mb-1">{chapter.title}</h2>
                 <ul>
                   {chapter.lesson.map((lesson) => (
                     <li key={lesson.id}>
-                      <button value={lesson.url} className="bg-gray-100 w-full text-left p-3 mt-1" onClick={handleClick}>
+                      <button value={lesson.url} className={video === lesson.url ? "bg-gray-300 w-full text-left p-3 mb-1" : "bg-gray-100 w-full text-left p-3 mb-1"} onClick={handleClick}>
                         {lesson.name}
                       </button>
                     </li>
@@ -125,7 +120,7 @@ CourseContent.propTypes = {
 export default CourseContent;
 
 export async function getStaticProps({ params: { slug } }) {
-  const course_res = await fetch(`${API_URL}/courses/?slug=${slug}`);
+  const course_res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/courses/?slug=${slug}`);
   const found = await course_res.json();
 
   return {
@@ -136,7 +131,7 @@ export async function getStaticProps({ params: { slug } }) {
 }
 
 export async function getStaticPaths() {
-  const course_paths = await fetch(`${API_URL}/courses`);
+  const course_paths = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/courses`);
   const courses = await course_paths.json();
 
   return {

@@ -2,7 +2,6 @@ import { Magic } from 'magic-sdk';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import { createContext, useEffect, useState } from 'react';
-import { MAGIC_PUBLIC_KEY } from '../utils/urls';
 
 const AuthContext = createContext();
 
@@ -41,7 +40,7 @@ export const AuthProvider = (props) => {
                 setUser({ email });
 
                 const token = await getToken()
-                console.log("token is ", token)
+                //console.log("token is ", token)
             }
         } catch (err) {
             console.error(err.message);
@@ -58,7 +57,7 @@ export const AuthProvider = (props) => {
     };
 
     useEffect(() => {
-        magic = new Magic(MAGIC_PUBLIC_KEY);
+        magic = new Magic(process.env.NEXT_PUBLIC_MAGIC_PK);
 
         checkUserLoggedIn();
     }, []);

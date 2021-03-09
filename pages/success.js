@@ -1,62 +1,69 @@
-
-import { useState, useEffect, useContext } from 'react'
-import AuthContext from '../context/AuthContext'
-import { useRouter } from 'next/router'
-import { API_URL } from '../utils/urls'
-
-import Link from 'next/link'
+import { useState, useEffect, useContext } from "react";
+import AuthContext from "../context/AuthContext";
+import { useRouter } from "next/router";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
 
 const useOrder = (session_id) => {
-    const [order, setOrder] = useState(null)
-    const [loading, setLoading] = useState(null)
+  const [order, setOrder] = useState(null);
+  const [loading, setLoading] = useState(null);
 
-    const { getToken, user } = useContext(AuthContext);
+  const { getToken, user } = useContext(AuthContext);
 
-    useEffect(() => {
-        if(user){
-            const fetchOrder = async () => {
-                setLoading(true)
-                try{
-                    const token = await getToken()
-                    const res = await fetch(`${API_URL}/orders/confirm`, {
-                            method: 'POST',
-                            body: JSON.stringify({ checkout_session: session_id }),
-                            headers: {
-                                'Content-type': 'application/json',
-                                'Authorization': `Bearer ${token}`
-                            }
-                    })
-    
-                    const data = await res.json()
-                    setOrder(data)
-                } catch (err){
-                    setOrder(null)
-                }
-                setLoading(false)
-            }
-            fetchOrder()
+  useEffect(() => {
+    if (user) {
+      const fetchOrder = async () => {
+        setLoading(true);
+        try {
+          const token = await getToken();
+          const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/orders/confirm`, {
+            method: "POST",
+            body: JSON.stringify({ checkout_session: session_id }),
+            headers: {
+              "Content-type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          });
+
+          const data = await res.json();
+          setOrder(data);
+        } catch (err) {
+          setOrder(null);
         }
+        setLoading(false);
+      };
+      fetchOrder();
+    }
+  }, [user]);
 
-    }, [user])
+  return { order, loading };
+};
 
-    return { order, loading }
-}
+export default function Success() {
+  const router = useRouter();
+  const { session_id } = router.query;
+  const { order, loading } = useOrder(session_id);
+  console.log(order);
 
-export default function Success(){
+  useEffect(() => {
+    if (order && !loading) {
+      router.push(`/courses/${order.course.slug}`);
+    }
+  }, [order, loading]);
 
-    const router = useRouter()
-    const { session_id } = router.query
-    const { order, loading } = useOrder(session_id)
-    console.log(order)
-
-    return (
-        <div>
-            <h2>Hold on!</h2>
-            { loading && <p>We're confirming your purchase!</p>}
-            { !loading && order && (
-                <p>Your order was processed successfully</p>
-            ) && router.push(`/courses/${order.course.slug}`)}
-        </div>
-        
-    )
+  return (
+    <div className="flex flex-col justify-center items-center w-screen h-screen">
+      <FontAwesomeIcon icon={faCircleNotch} size="6x" spin />
+      {loading && (
+        <h2 className="text-4xl mt-4 animate-pulse">
+          Were confirming your purchase!
+        </h2>
+      )}
+      {!loading && order && (
+        <h2 className="text-4xl mt-4 animate-pulse">
+          Your order was processed successfully
+        </h2>
+      )}
+    </div>
+  );
 }

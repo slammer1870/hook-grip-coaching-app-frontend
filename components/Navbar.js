@@ -2,20 +2,18 @@ import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import { useContext } from 'react';
 import AuthContext from '../context/AuthContext';
-import Logo from '../icons/Logo';
 import Link from 'next/link';
 
 const Navbar = ({ handleAccount }) => {
     const { user } = useContext(AuthContext);
     const router = useRouter();
     const path = router.pathname;
-    const goToLink = path !== '/' ? path : '/';
 
     return (
         <div className="w-screen flex p-6 justify-between bg-white lg:pr-28">
             <Link href="/">
                 <a>
-                    <Logo />
+                    <h1 className="text-2xl font-light"><strong>Hook Grip</strong> Tech</h1>
                 </a>
             </Link>
             <div>

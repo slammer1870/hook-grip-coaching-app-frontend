@@ -2,9 +2,7 @@ import { useRouter } from "next/router";
 import PropTypes from "prop-types";
 import { useState } from "react";
 import ArticleCard from "../../components/ArticleCard";
-import BottomNav from "../../components/BottomNav";
 import Slider from "../../components/Slider";
-import { API_URL } from "../../utils/urls";
 
 const Article = ({ articles, categories }) => {
   //const categories = ['guard', 'passing', 'submissions', 'defence'];
@@ -44,14 +42,13 @@ const Article = ({ articles, categories }) => {
         />
       </div>
         <div className="flex flex-wrap">
-          {articles
-            .filter(
+          {articles.filter(
               (article) =>
                 article.article_category.title === categories[count].title
             )
             .map((article) => (
-              <div className="mx-auto lg:mx-5">
-                <ArticleCard key={article.id} article={article} />
+              <div className="mx-auto lg:mx-5" key={article.id}>
+                <ArticleCard article={article} />
               </div>
             ))}
         </div>
@@ -74,8 +71,8 @@ export default Article;
 
 export async function getStaticProps() {
   const [articles, categories] = await Promise.all([
-    fetch(`${API_URL}/articles/`).then((r) => r.json()),
-    fetch(`${API_URL}/article-categories/`).then((r) => r.json()),
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/articles/`).then((r) => r.json()),
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/article-categories/`).then((r) => r.json()),
   ]);
 
   return {
