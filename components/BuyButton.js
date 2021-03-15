@@ -1,15 +1,19 @@
 import { loadStripe } from '@stripe/stripe-js';
 import PropTypes from 'prop-types';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import AuthContext from '../context/AuthContext';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PK);
 
 const BuyButton = ({ course }) => {
     
     const { getToken } = useContext(AuthContext);
+    const [loading, setLoading] = useState(false)
 
     const handleBuy = async () => {
+        setLoading(true)
         const stripe = await stripePromise;
         const token = await getToken();
 
@@ -26,13 +30,15 @@ const BuyButton = ({ course }) => {
         await stripe.redirectToCheckout({
             sessionId: session.id
         });
+        setLoading(false)
     };
 
     return (
         <button
-            className="flex bg-blue-400 font-bold text-white w-full py-3 transition duration-300 ease-in-out hover:bg-blue-500 text-center justify-center my-4"
+            className="flex bg-blue-400 font-bold text-white w-full p-3 transition duration-300 ease-in-out hover:bg-blue-500 text-center justify-center items-center h-12 my-4"
             onClick={handleBuy}>
-            BUY NOW
+            {!loading && <p>BUY NOW</p>}
+            {loading && <FontAwesomeIcon icon={faCircleNotch} spin />}
         </button>
     );
 };

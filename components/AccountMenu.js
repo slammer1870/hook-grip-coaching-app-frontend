@@ -3,39 +3,47 @@ import { useContext, useEffect, useState } from "react";
 import CourseScroller from "../components/CourseScroller";
 import AuthContext from "../context/AuthContext";
 import ProfileAvatar from "../icons/ProfileAvatar";
-import { API_URL, fromImageToUrl } from "../utils/urls";
+import { fromImageToUrl } from "../utils/urls";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
 
 const useOrders = (user, getToken) => {
   const [orders, setOrders] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchOrders = async () => {
       if (user) {
         try {
+          setLoading(true);
           const token = await getToken();
-          const order_res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/orders`, {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          });
+          const order_res = await fetch(
+            `${process.env.NEXT_PUBLIC_API_URL}/orders`,
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
           const data = await order_res.json();
           const paid = data.filter((order) => order.status === "paid");
           setOrders(paid);
         } catch (err) {
           setOrders([]);
         }
+        setLoading(false);
       }
     };
 
     fetchOrders();
   }, [user]);
-  return orders;
+  return { orders, loading };
 };
 
 const AccountMenu = ({ active, handleAccount }) => {
   const { user, logoutUser, getToken } = useContext(AuthContext);
 
-  const orders = useOrders(user, getToken);
+  const { orders, loading } = useOrders(user, getToken);
 
   if (user && active) {
     return (
@@ -97,11 +105,13 @@ const AccountMenu = ({ active, handleAccount }) => {
         <div>
           <h1 className="text-3xl mb-4">My Courses</h1>
           <div className="flex overflow-y-hidden right-0 gradient-mask-r-70%">
-            {orders.map((order) => (
-              <div key={order.id} className="mr-4" onClick={handleAccount}>
-                <CourseScroller course={order.course} />
-              </div>
-            ))}
+            {loading && <div className="mr-4 h-60 items-center justify-center flex w-screen"><div className="flex flex-col items-center"><FontAwesomeIcon icon={faCircleNotch} size="6x" spin /><h2 className="text-4xl mt-4 animate-pulse">Loading</h2></div></div>}
+            {!loading &&
+              orders.map((order) => (
+                <div key={order.id} className="mr-4" onClick={handleAccount}>
+                  <CourseScroller course={order.course} />
+                </div>
+              ))}
           </div>
           <h1 className="text-3xl my-4">My Curriculums</h1>
         </div>
