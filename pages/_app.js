@@ -25,11 +25,11 @@ const MyApp = ({ Component, pageProps }) => {
     return (
         <AuthProvider>
             <main className="flex flex-col w-screen h-screen">
-                <nav className="top-0 fixed z-10 lg:left-20">
+                <nav className="top-0 fixed z-10 lg:px-20 w-screen">
                     <Navbar handleAccount={accountActive} />
                     <AccountMenu active={active} handleAccount={accountActive} />
                 </nav>
-                <content className="my-20 pb-20 lg:left-20 lg:absolute lg:pr-28 lg:w-full">
+                <content className="my-20 pb-20 lg:pl-20 lg:absolute lg:w-screen">
                     <Component {...pageProps} />
                 </content>
                 <nav className="bottom-0 fixed lg:h-screen lg:left-0 lg:top-0">
