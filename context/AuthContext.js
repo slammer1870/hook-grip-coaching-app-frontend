@@ -50,6 +50,7 @@ export const AuthProvider = (props) => {
     const getToken = async () => {
         try {
             const token = await magic.user.getIdToken();
+            console.log(token)
             return token;
         } catch (err) {
             console.error(err.message);
