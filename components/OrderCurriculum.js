@@ -29,8 +29,8 @@ const OrderCurriculum = ({ timeslots, active, handlerOrder }) => {
       },
     });
     console.log("sent");
-    const curriculum = await res.json();
-    router.push(`/curriculums/confirm/?id=${curriculum.id}`)
+    const result = await res.json();
+    router.push(`/curriculums/confirm/${result.id}`)
   };
 
 

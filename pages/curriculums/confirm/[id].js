@@ -1,0 +1,53 @@
+import { useState, useEffect, useContext } from "react";
+import AuthContext from "../../../context/AuthContext";
+import { useRouter } from "next/router";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
+import BuyButton from '../../../components/BuyButton'
+
+const Confirm = ({ curriculum }) => {
+  console.log(curriculum)
+
+  return (
+    <div className="flex p-6 top-0 left-0 w-screen h-screen fixed bg-black bg-opacity-75 z-10 ">
+      <button className="w-screen h-screen absolute"></button>
+      <div className="h-80 w-full max-w-screen-sm p-6 bg-white mx-auto my-auto z-20 relative">
+        <h1>Confirm your order</h1>
+        <p>{curriculum.timeslot.date}</p>
+        <BuyButton product={curriculum} />
+      </div>
+    </div>
+  );
+};
+
+export default Confirm;
+
+const id = () => {
+    const router = useRouter();
+  const { id } = router.query;
+  console.log('id is', id)
+  return id;
+}
+
+export async function getStaticProps({ params: { id } }) {
+    const curriculum_res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/curricula/?id=${id}`);
+    const found = await curriculum_res.json();
+  
+    return {
+      props: {
+        curriculum: found[0],
+      },
+    };
+  }
+  
+  export async function getStaticPaths() {
+    const curricula_paths = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/curricula`);
+    const curricula = await curricula_paths.json();
+  
+    return {
+      paths: curricula.map((curriculum) => ({
+        params: { id: String(curriculum.id) },
+      })),
+      fallback: false,
+    };
+  }
