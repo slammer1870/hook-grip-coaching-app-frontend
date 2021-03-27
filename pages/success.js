@@ -47,7 +47,11 @@ export default function Success() {
 
   useEffect(() => {
     if (order && !loading) {
-      router.push(`/courses/${order.course.slug}`);
+      if(order.course.slug){
+      router.push(`/courses/${order.course.slug}`);}
+      if(order.curriculum.id){
+        router.push(`/curriculums/${order.curriculum.id}`);
+      }
     }
   }, [order, loading]);
 

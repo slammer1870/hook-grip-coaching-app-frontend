@@ -106,7 +106,7 @@ const AccountMenu = ({ active, handleAccount }) => {
           <h1 className="text-3xl mb-4">My Courses</h1>
           <div className="flex overflow-y-hidden right-0 gradient-mask-r-70%">
             {loading && <div className="mr-4 h-60 items-center justify-center flex w-screen"><div className="flex flex-col items-center"><FontAwesomeIcon icon={faCircleNotch} size="6x" spin /><h2 className="text-4xl mt-4 animate-pulse">Loading</h2></div></div>}
-            {!loading &&
+            {!loading && orders &&
               orders.map((order) => (
                 <div key={order.id} className="mr-4" onClick={handleAccount}>
                   <CourseScroller course={order.course} />

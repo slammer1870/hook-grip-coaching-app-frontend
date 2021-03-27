@@ -6,7 +6,6 @@ import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
 import BuyButton from '../../../components/BuyButton'
 
 const Confirm = ({ curriculum }) => {
-  console.log(curriculum)
 
   return (
     <div className="flex p-6 top-0 left-0 w-screen h-screen fixed bg-black bg-opacity-75 z-10 ">
@@ -22,13 +21,6 @@ const Confirm = ({ curriculum }) => {
 
 export default Confirm;
 
-const id = () => {
-    const router = useRouter();
-  const { id } = router.query;
-  console.log('id is', id)
-  return id;
-}
-
 export async function getStaticProps({ params: { id } }) {
     const curriculum_res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/curricula/?id=${id}`);
     const found = await curriculum_res.json();
@@ -41,7 +33,7 @@ export async function getStaticProps({ params: { id } }) {
   }
   
   export async function getStaticPaths() {
-    const curricula_paths = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/curricula`);
+    const curricula_paths = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/curricula?_limit=-1`);
     const curricula = await curricula_paths.json();
   
     return {
