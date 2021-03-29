@@ -15,7 +15,7 @@ const BuyCourse = ({ course }) => {
         <p className="text-sm">{course.description}</p>
         <span>€{course.price}</span>
       </div>
-      <BuyButton course={course} />
+      <BuyButton product={course} />
     </div>
   );
 };
