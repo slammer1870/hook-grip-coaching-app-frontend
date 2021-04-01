@@ -11,8 +11,6 @@ const OrderCurriculum = ({ timeslots, active, handlerOrder }) => {
   const [time, setTime] = useState()
   const router = useRouter()
 
-  console.log(timeslots);
-
   const handleBooking = async (e) => {
     e.preventDefault();
     const token = await getToken();
