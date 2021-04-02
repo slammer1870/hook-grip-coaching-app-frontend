@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
 import BuyButton from "../../../components/BuyButton";
 import Link from "next/link";
+import PropTypes from "prop-types";
 
 
 const Confirm = ({ curriculum }) => {
@@ -30,6 +31,17 @@ const Confirm = ({ curriculum }) => {
     </div>
   );
 };
+
+Confirm.propTypes = {
+    curriculum: PropTypes.shape({
+      order: PropTypes.shape({
+          id: PropTypes.number
+      }),
+      timeslot: PropTypes.shape({
+          date: PropTypes.string
+      })
+    }),
+  };
 
 export default Confirm;
 
