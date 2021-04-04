@@ -8,7 +8,7 @@ import Link from "next/link";
 import PropTypes from "prop-types";
 
 
-export default function Confirm (curriculum) {
+export default function Confirm ({curriculum}) {
 
     const router = useRouter()
 
