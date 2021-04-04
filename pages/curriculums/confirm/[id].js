@@ -7,16 +7,29 @@ import BuyButton from "../../../components/BuyButton";
 import Link from "next/link";
 import PropTypes from "prop-types";
 
+export default function Confirm({ curriculum }) {
+  const router = useRouter();
 
-export default function Confirm ({curriculum}) {
+  // If the page is not yet generated, this will be displayed
+  // initially until getStaticProps() finishes running
+  if (router.isFallback) {
+    return (
+      <div className="flex p-6 top-0 left-0 w-screen h-screen fixed bg-black bg-opacity-75 z-10 ">
+        <Link href="/curriculums">
+          <button className="w-screen h-screen absolute"></button>
+        </Link>
+        <div className="h-80 w-full max-w-screen-sm p-6 bg-white mx-auto my-auto z-20 relative">
+          <h1>Loading...</h1>
+        </div>
+      </div>
+    );
+  }
 
-    const router = useRouter()
-
-    useEffect(() => {
-        if (curriculum.order && curriculum.order.status === "paid") {
-            router.push(`/curriculums/${curriculum.id}`)
-        }
-    })
+  useEffect(() => {
+    if (curriculum.order && curriculum.order.status === "paid") {
+      router.push(`/curriculums/${curriculum.id}`);
+    }
+  });
 
   return (
     <div className="flex p-6 top-0 left-0 w-screen h-screen fixed bg-black bg-opacity-75 z-10 ">
@@ -30,18 +43,18 @@ export default function Confirm ({curriculum}) {
       </div>
     </div>
   );
-};
+}
 
 Confirm.propTypes = {
-    curriculum: PropTypes.shape({
-      order: PropTypes.shape({
-          id: PropTypes.number
-      }),
-      timeslot: PropTypes.shape({
-          date: PropTypes.string
-      })
+  curriculum: PropTypes.shape({
+    order: PropTypes.shape({
+      id: PropTypes.number,
     }),
-  };
+    timeslot: PropTypes.shape({
+      date: PropTypes.string,
+    }),
+  }),
+};
 
 export async function getStaticProps({ params: { id } }) {
   const curriculum_res = await fetch(
