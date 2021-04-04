@@ -28,7 +28,7 @@ const OrderCurriculum = ({ timeslots, active, handlerOrder }) => {
     });
     console.log("sent");
     const result = await res.json();
-    router.push(`/curriculums/confirm/${result.id}`)
+    const redirect = await router.push(`/curriculums/confirm/${result.id}`)
   };
 
 
