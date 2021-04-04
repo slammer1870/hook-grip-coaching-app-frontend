@@ -71,7 +71,7 @@ export async function getStaticProps({ params: { id } }) {
 
 export async function getStaticPaths() {
   const curricula_paths = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/curricula`
+    `${process.env.NEXT_PUBLIC_API_URL}/curricula?_limit=-1`
   );
   const curricula = await curricula_paths.json();
 
