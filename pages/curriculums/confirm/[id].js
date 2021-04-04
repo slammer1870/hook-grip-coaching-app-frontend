@@ -44,6 +44,7 @@ Confirm.propTypes = {
   };
 
 export async function getStaticProps({ params: { id } }) {
+    console.log("the id is", id)
   const curriculum_res = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/curricula/?id=${id}`
   );
