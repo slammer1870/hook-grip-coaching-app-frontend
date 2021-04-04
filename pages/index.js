@@ -11,6 +11,8 @@ export default function Home() {
         loginUser(email);
     };
 
+    console.log(user)
+
     const router = useRouter();
 
     if (user) {

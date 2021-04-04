@@ -22,7 +22,7 @@ const CourseScroller = ({ course }) => {
             <div>
               <h1 className="text-xl mb-1">{course.title}</h1>
               <div>
-                {course.description.length > MAX_LENGTH ? (
+                {course.description && (course.description.length > MAX_LENGTH) ? (
                   <p className="text-sm">{`${course.description.substring(
                     0,
                     MAX_LENGTH

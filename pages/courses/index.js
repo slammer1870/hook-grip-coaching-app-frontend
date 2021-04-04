@@ -34,7 +34,7 @@ const Courses = ({ courses, categories }) => {
                     key={course.id}
                   >
                     <CourseScroller course={course} />
-                    <BuyButton course={course} />
+                    <BuyButton product={course} />
                   </div>
                 ))}
             </div>

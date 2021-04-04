@@ -3,7 +3,7 @@ import { useState } from 'react';
 import BuyButton from "../../components/BuyButton";
 import OrderCurriculum from "../../components/OrderCurriculum";
 
-export default function Curriculums() {
+const Curriculums = ({curricula, timeslots}) => {
   const [active, setActive] = useState(false);
 
   const accountActive = () => {
@@ -70,7 +70,23 @@ export default function Curriculums() {
           </g>
         </svg>
       </button>
-      <OrderCurriculum active={active} handlerOrder={accountActive} />
+      <OrderCurriculum active={active} handlerOrder={accountActive} timeslots={timeslots}/>
     </div>
   );
+}
+
+export default Curriculums;
+
+export async function getStaticProps() {
+  const [curricula, timeslots] = await Promise.all([
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/curricula`).then((r) => r.json()),
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/timeslots`).then((r) => r.json()),
+  ]);
+
+  return {
+    props: {
+      curricula,
+      timeslots,
+    },
+  };
 }

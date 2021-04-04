@@ -40,7 +40,6 @@ export const AuthProvider = (props) => {
                 setUser({ email });
 
                 const token = await getToken()
-                //console.log("token is ", token)
             }
         } catch (err) {
             console.error(err.message);
