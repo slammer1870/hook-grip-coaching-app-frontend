@@ -8,7 +8,7 @@ import Link from "next/link";
 import PropTypes from "prop-types";
 
 
-const Confirm = ({ curriculum }) => {
+export default function Confirm ({ curriculum }) {
 
     const router = useRouter()
 
@@ -42,8 +42,6 @@ Confirm.propTypes = {
       })
     }),
   };
-
-export default Confirm;
 
 export async function getStaticProps({ params: { id } }) {
   const curriculum_res = await fetch(
