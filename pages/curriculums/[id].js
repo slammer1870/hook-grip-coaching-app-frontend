@@ -1,7 +1,7 @@
 const Slug = () => {
   return (
-    <div>
-      <h1>Slug</h1>
+    <div className="p-6">
+      <h1>This is where your curriculum will be!</h1>
     </div>
   );
 };
