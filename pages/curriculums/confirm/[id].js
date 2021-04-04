@@ -66,6 +66,7 @@ export async function getStaticProps({ params: { id } }) {
     props: {
       curriculum: found[0],
     },
+    revalidate: 1,
   };
 }
 
