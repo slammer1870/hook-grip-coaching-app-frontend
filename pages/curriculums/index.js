@@ -1,10 +1,12 @@
 import { useRouter } from "next/router";
-import { useState } from 'react';
+import { useState, useContext, useEffect } from "react";
 import BuyButton from "../../components/BuyButton";
 import OrderCurriculum from "../../components/OrderCurriculum";
+import AuthContext from "../../context/AuthContext";
 
-const Curriculums = ({curricula, timeslots}) => {
-  const [active, setActive] = useState(false);
+const Curriculums = ({ timeslots }) => {
+  const [active, setActive] = useState();
+  const { user } = useContext(AuthContext);
 
   const accountActive = () => {
     if (!active) {
@@ -15,6 +17,14 @@ const Curriculums = ({curricula, timeslots}) => {
   };
 
   const router = useRouter();
+
+  const { redirect } = router.query;
+
+  useEffect(() => {
+    if (redirect === "true") {
+      setActive(true);
+    }
+  });
 
   const path = router.pathname;
 
@@ -70,10 +80,14 @@ const Curriculums = ({curricula, timeslots}) => {
           </g>
         </svg>
       </button>
-      <OrderCurriculum active={active} handlerOrder={accountActive} timeslots={timeslots}/>
+      <OrderCurriculum
+        active={active}
+        handlerOrder={accountActive}
+        timeslots={timeslots}
+      />
     </div>
   );
-}
+};
 
 export default Curriculums;
 

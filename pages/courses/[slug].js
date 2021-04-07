@@ -103,7 +103,7 @@ const CourseContent = ({ course }) => {
     );
   } else if (user && !bought) {
     return (
-      <div>
+      <div className="p-6">
         <BuyCourse course={course} />
       </div>
     );
