@@ -6,7 +6,7 @@ const CurriculumContent = ({curriculum}) => {
     <div className="p-6 items-center max-w-screen-lg mx-auto">
     <h1 className="my-4 text-3xl">Hey {curriculum.name}, thank you for booking with us!</h1>
       <p className="my-4">Your Zoom Call is scheduled for:<br/><br/>{String(date)}</p>
-      <p className="my-4">Your meeting url is:</p><a className="my-4 text-blue-600" href={curriculum.meeting_url}>{curriculum.meeting_url}</a>
+      <p className="my-4">Your meeting url is: </p><a className="my-4 text-blue-600" href={curriculum.meeting_url}>{curriculum.meeting_url}</a>
       <p className="my-4">Once you have done your consultation, your curriculum will appear on this page!</p>
     </div>
   );
