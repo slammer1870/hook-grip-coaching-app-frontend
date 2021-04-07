@@ -1,4 +1,4 @@
-const CurriculumContent = ({curriculum}) => {
+const CurriculumContent = (curriculum) => {
   
   const date = new Date(curriculum.timeslot.date)
 
