@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { fromImageToUrl } from "../utils/urls";
 import BuyButton from "./BuyButton";
 
-const BuyCourse = ({ course }) => {
+const BuyCourse = ({course}) => {
   return (
     <div className="flex flex-col max-w-screen-sm mx-auto">
       <img
