@@ -59,6 +59,9 @@ const CurriculumContent = () => {
   if (!loading && curriculum.timeslot !== undefined) {
     return (
       <div className="flex p-6 top-0 lg:left-20 w-screen h-screen fixed bg-black bg-opacity-75 z-10 ">
+        <Link href="/curriculums">
+          <button className="w-screen h-screen absolute"></button>
+        </Link>
         <div className="h-auto w-full max-w-screen-sm p-6 bg-white mx-auto my-auto z-20 relative">
           <div className="p-6 items-center max-w-screen-lg mx-auto">
             <h1 className="my-4 text-3xl">
@@ -69,7 +72,7 @@ const CurriculumContent = () => {
               <br />
               {String(new Date(curriculum.timeslot.date))}
             </p>
-            <p className="my-4">Your meeting url is: </p>
+            <p className="my-4">Your meeting URL is: </p>
             <a className="my-4 text-blue-600" href={curriculum.meeting_url}>
               {curriculum.meeting_url}
             </a>
