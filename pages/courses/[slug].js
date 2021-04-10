@@ -110,12 +110,18 @@ const CourseContent = () => {
       </div>
     );
   }
-  return(
+  if (!loading && !realCourse && user) {
+    return (
+      <div className="p-6">
+        <h1>Course does not exist</h1>
+      </div>
+    );
+  }
+  return (
     <div>
       <h1>Loading...</h1>
     </div>
-  )
-  
+  );
 };
 
 CourseContent.propTypes = {

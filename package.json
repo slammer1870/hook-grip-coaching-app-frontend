@@ -26,6 +26,7 @@
     "react-router-dom": "^5.2.0",
     "remark": "^13.0.0",
     "remark-html": "^13.0.1",
+    "swr": "^0.5.5",
     "tailwind-gradient-mask-image": "^0.2.0"
   },
   "devDependencies": {
