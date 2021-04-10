@@ -62,7 +62,7 @@ const CurriculumContent = () => {
         <div className="h-auto w-full max-w-screen-sm p-6 bg-white mx-auto my-auto z-20 relative">
           <div className="p-6 items-center max-w-screen-lg mx-auto">
             <h1 className="my-4 text-3xl">
-              Hey {curriculum.name}, thank you for booking with us!
+              Hey {curriculum.name}, thank you for booking with us!!
             </h1>
             <p className="my-4">
               Your Zoom Call is scheduled for: <br />
