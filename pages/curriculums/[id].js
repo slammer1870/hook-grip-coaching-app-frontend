@@ -58,7 +58,7 @@ const CurriculumContent = () => {
 
   if (!loading && curriculum.timeslot !== undefined) {
     return (
-      <div className="flex p-6 top-0 lg:left-20 w-screen h-screen fixed bg-black bg-opacity-75 z-10 ">
+      <div className="flex p-6 top-0 left-0 w-screen h-screen fixed bg-black bg-opacity-75 z-10 ">
         <Link href="/curriculums">
           <button className="w-screen h-screen absolute"></button>
         </Link>
