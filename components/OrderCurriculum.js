@@ -4,16 +4,20 @@ import { fromImageToUrl } from "../utils/urls";
 import { useContext, useState } from "react";
 import AuthContext from "../context/AuthContext";
 import { useRouter } from "next/router";
-import BuyButton from '../components/BuyButton'
+import BuyButton from "../components/BuyButton";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
 
 const OrderCurriculum = ({ timeslots, active, handlerOrder }) => {
   const { user, getToken } = useContext(AuthContext);
   const [booking, setBooking] = useState();
+  const [loading, setLoading] = useState();
   const [time, setTime] = useState();
 
   const router = useRouter();
 
   const handleBooking = async (e) => {
+    setLoading(true);
     e.preventDefault();
     const token = await getToken();
     setTime(e.target.timeslot.value);
@@ -31,8 +35,9 @@ const OrderCurriculum = ({ timeslots, active, handlerOrder }) => {
     });
     console.log("sent");
     const result = await res.json();
-    console.log(result)
+    console.log(result);
     setBooking(result);
+    setLoading(false);
     //const redirect = await router.push(`/curriculums/confirm/${result.id}`);
   };
 
@@ -51,9 +56,23 @@ const OrderCurriculum = ({ timeslots, active, handlerOrder }) => {
           <div className="flex relative w-3/4 sm:items-center md:w-2/3 mx-auto">
             <div className="w-full h-6 absolute inset-0 flex items-center justify-center">
               <div className="w-full ml-6 h-1 bg-gray-200 pointer-events-none"></div>
-              <div className={!booking ? "flex-shrink-0 w-6 h-6 rounded-full inline-flex items-center justify-center bg-indigo-500 text-white relative z-10 title-font font-medium text-sm opacity-50" : "flex-shrink-0 w-6 h-6 rounded-full inline-flex items-center justify-center bg-indigo-500 text-white relative z-10 title-font font-medium text-sm"}></div>
+              <div
+                className={
+                  !booking
+                    ? "flex-shrink-0 w-6 h-6 rounded-full inline-flex items-center justify-center bg-indigo-500 text-white relative z-10 title-font font-medium text-sm opacity-50"
+                    : "flex-shrink-0 w-6 h-6 rounded-full inline-flex items-center justify-center bg-indigo-500 text-white relative z-10 title-font font-medium text-sm"
+                }
+              ></div>
             </div>
-            <button onClick={() => setBooking(false)}><div className={booking ? "flex-shrink-0 w-6 h-6 rounded-full inline-flex items-center justify-center bg-indigo-500 text-white relative z-10 title-font font-medium text-sm opacity-50" : "flex-shrink-0 w-6 h-6 rounded-full inline-flex items-center justify-center bg-indigo-500 text-white relative z-10 title-font font-medium text-sm"}></div></button>
+            <button onClick={() => setBooking(false)}>
+              <div
+                className={
+                  booking
+                    ? "flex-shrink-0 w-6 h-6 rounded-full inline-flex items-center justify-center bg-indigo-500 text-white relative z-10 title-font font-medium text-sm opacity-50"
+                    : "flex-shrink-0 w-6 h-6 rounded-full inline-flex items-center justify-center bg-indigo-500 text-white relative z-10 title-font font-medium text-sm"
+                }
+              ></div>
+            </button>
           </div>
           <div className="h-6 w-10/12 md:w-3/4 flex justify-between bg-gray-100 max-w-screen-sm bg-white mx-auto my-auto z-20 relative">
             <h1 className={booking && "opacity-50"}>Schedule</h1>
@@ -99,50 +118,55 @@ const OrderCurriculum = ({ timeslots, active, handlerOrder }) => {
                   We're sorry but there's no bookings currently available!
                 </p>
               )}
-              {timeslots.filter((timeslot) => timeslot.date) != 0 && (
-                <input
-                  type="submit"
-                  value="BOOK NOW"
-                  className="flex bg-blue-400 font-bold text-white w-full p-3 transition duration-300 ease-in-out hover:bg-blue-500 text-center justify-center items-center h-12 mt-8 my-4"
-                />
+              {timeslots.filter((timeslot) => timeslot.date) != 0 &&
+                !loading && (
+                  <input
+                    type="submit"
+                    value="BOOK NOW"
+                    className="flex bg-blue-400 font-bold text-white w-full p-3 transition duration-300 ease-in-out hover:bg-blue-500 text-center justify-center items-center h-12 mt-8 my-4"
+                  />
+                )}
+              {timeslots.filter((timeslot) => timeslot.date) != 0 && loading && (
+                <button className="flex bg-blue-400 font-bold text-white w-full p-3 transition duration-300 ease-in-out hover:bg-blue-500 text-center justify-center items-center h-12 mt-8 my-4">
+                  <FontAwesomeIcon icon={faCircleNotch} spin />
+                </button>
               )}
             </form>
           )}
-          {booking
-             && (
-              <div>
-                <label className="block my-4">
-                  <span className="text-gray-700">Name</span>
-                  <input
-                    type="text"
-                    className="form-input mt-1 py-2 px-5 mx-autoblock w-full bg-gray-100 placeholder-black"
-                    placeholder={booking.name}
-                    readOnly="readonly"
-                  />
-                </label>
-                <label className="block my-4">
-                  <span className="text-gray-700">Email</span>
-                  <input
-                    type="text"
-                    className="form-input mt-1 py-2 px-5 block w-full bg-gray-100 placeholder-black"
-                    placeholder={booking.user.email}
-                    readOnly="readonly"
-                  />
-                </label>
-                <label className="block my-4">
-                  <span className="text-gray-700">Time</span>
-                  <input
-                    type="text"
-                    className="form-input mt-1 py-2 px-5 block w-full bg-gray-100 placeholder-black"
-                    placeholder={new Date(booking.timeslot.date).toUTCString()}
-                    readOnly="readonly"
-                  />
-                </label>
-                <div className="mt-2">
-                  <BuyButton product={booking} />
-                </div>
+          {booking && (
+            <div>
+              <label className="block my-4">
+                <span className="text-gray-700">Name</span>
+                <input
+                  type="text"
+                  className="form-input mt-1 py-2 px-5 mx-autoblock w-full bg-gray-100 placeholder-black"
+                  placeholder={booking.name}
+                  readOnly="readonly"
+                />
+              </label>
+              <label className="block my-4">
+                <span className="text-gray-700">Email</span>
+                <input
+                  type="text"
+                  className="form-input mt-1 py-2 px-5 block w-full bg-gray-100 placeholder-black"
+                  placeholder={booking.user.email}
+                  readOnly="readonly"
+                />
+              </label>
+              <label className="block my-4">
+                <span className="text-gray-700">Time</span>
+                <input
+                  type="text"
+                  className="form-input mt-1 py-2 px-5 block w-full bg-gray-100 placeholder-black"
+                  placeholder={new Date(booking.timeslot.date).toUTCString()}
+                  readOnly="readonly"
+                />
+              </label>
+              <div className="mt-2">
+                <BuyButton product={booking} />
               </div>
-            )}
+            </div>
+          )}
         </div>
       </div>
     );

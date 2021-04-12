@@ -32,7 +32,7 @@ const Curriculums = ({ timeslots }) => {
     <div className="container p-6">
       <h1 className="text-4xl mb-4">Curriculums</h1>
       <p className="mb-4">
-        Curriclums allow you to provide personalised coaching straight to your
+        Curriculums allow you to provide personalised coaching straight to your
         clients in a customisable video course format.
       </p>
       <p className="mb-4">
