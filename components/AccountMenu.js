@@ -7,8 +7,9 @@ import ProfileAvatar from "../icons/ProfileAvatar";
 import { fromImageToUrl } from "../utils/urls";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
+import useOrders from '../lib/api'
 
-const useOrders = (user, getToken) => {
+/*const useOrders = (user, getToken) => {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -39,7 +40,7 @@ const useOrders = (user, getToken) => {
     fetchOrders();
   }, [user]);
   return { orders, loading };
-};
+};*/
 
 const AccountMenu = ({ active, handleAccount }) => {
   const { user, logoutUser, getToken } = useContext(AuthContext);

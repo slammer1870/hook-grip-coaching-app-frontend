@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { fromImageToUrl } from "../utils/urls";
 
-const curriculumScroller = ({ curriculum }) => {
+const CurriculumScroller = ({ curriculum }) => {
   const MAX_LENGTH = 60;
 
   if (curriculum) {
@@ -30,11 +30,11 @@ const curriculumScroller = ({ curriculum }) => {
   } else return false;
 };
 
-curriculumScroller.propTypes = {
+CurriculumScroller.propTypes = {
   curriculum: PropTypes.shape({
     id: PropTypes.string,
     name: PropTypes.string,
   }),
 };
 
-export default curriculumScroller;
+export default CurriculumScroller;
