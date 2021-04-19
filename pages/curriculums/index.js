@@ -51,7 +51,7 @@ const Curriculums = ({ timeslots }) => {
 
 export default Curriculums;
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const timeslots = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/timeslots`
   ).then((r) => r.json());
@@ -60,6 +60,5 @@ export async function getStaticProps() {
     props: {
       timeslots,
     },
-    revalidate: 1
   };
 }
