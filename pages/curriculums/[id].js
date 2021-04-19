@@ -2,6 +2,8 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import { useContext, useEffect, useState } from "react";
 import AuthContext from "../../context/AuthContext";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
 
 const useCurriculum = (user, getToken) => {
   const [curriculum, setCurriculum] = useState([]);
@@ -50,7 +52,10 @@ const CurriculumContent = () => {
           <button className="w-screen h-screen absolute"></button>
         </Link>
         <div className="h-80 w-full max-w-screen-sm p-6 bg-white mx-auto my-auto z-20 relative">
-          <h1>Loading...</h1>
+          <div className="w-full h-full flex flex-col justify-center items-center">
+            <FontAwesomeIcon icon={faCircleNotch} size="4x" spin />
+            <h1>Loading...</h1>
+          </div>
         </div>
       </div>
     );
@@ -85,7 +90,7 @@ const CurriculumContent = () => {
       </div>
     );
   }
-  return <h1>Curriculum does not exist</h1>;
+  return <h1></h1>;
 };
 
 export default CurriculumContent;
