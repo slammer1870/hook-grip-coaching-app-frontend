@@ -41,6 +41,9 @@ export const AuthProvider = (props) => {
 
                 const token = await getToken()
             }
+            else{
+                router.push('/')
+            }
         } catch (err) {
             console.error(err.message);
         }

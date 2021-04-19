@@ -1,10 +1,20 @@
 import { useRouter } from "next/router";
-import { useState } from 'react';
+import { useState, useContext, useEffect } from "react";
 import BuyButton from "../../components/BuyButton";
 import OrderCurriculum from "../../components/OrderCurriculum";
+import AuthContext from "../../context/AuthContext";
+import { useOrders } from "../../lib/api";
+import CurriculumScroller from "../../components/CourseScroller";
+import CurriculumGrid from "../../components/CurriculumGrid";
 
-const Curriculums = ({curricula, timeslots}) => {
-  const [active, setActive] = useState(false);
+const Curriculums = ({ timeslots }) => {
+  const [active, setActive] = useState();
+
+  const { user, getToken } = useContext(AuthContext);
+
+  const { orders, loading } = useOrders(user, getToken);
+
+  console.log("orders are", orders);
 
   const accountActive = () => {
     if (!active) {
@@ -14,78 +24,40 @@ const Curriculums = ({curricula, timeslots}) => {
     }
   };
 
-  const router = useRouter();
-
-  const path = router.pathname;
-
   return (
-    <div className="container p-6">
-      <h1 className="text-4xl mb-4">Curriculums</h1>
-      <p className="mb-4">
-        Curriclums allow you to provide personalised coaching straight to your
-        clients in a customisable video course format.
-      </p>
-      <p className="mb-4">
-        Curriculums are purchased and scheduled right here!
-      </p>
-      <button className="w-36 h-56 bg-gray-200" onClick={accountActive}>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="40"
-          height="40"
-          viewBox="0 0 40 40"
-          className="mx-auto"
-        >
-          <defs>
-            <clipPath id="clip-path">
-              <rect width="40" height="40" fill="none" />
-            </clipPath>
-            <clipPath id="clip-path-2">
-              <rect width="16" height="15.999" fill="none" />
-            </clipPath>
-          </defs>
-          <g id="_" data-name="+" clip-path="url(#clip-path)">
-            <circle
-              id="Ellipse_226"
-              data-name="Ellipse 226"
-              cx="20"
-              cy="20"
-              r="20"
-              fill="#2699fb"
-            />
-            <g
-              id="_2"
-              data-name="+"
-              transform="translate(12 12)"
-              clip-path="url(#clip-path-2)"
-            >
-              <path
-                id="Union_1"
-                data-name="Union 1"
-                d="M-4613,16V9h-7V7h7V0h2V7h7V9h-7v7Z"
-                transform="translate(4620)"
-                fill="#fff"
-              />
-            </g>
-          </g>
-        </svg>
-      </button>
-      <OrderCurriculum active={active} handlerOrder={accountActive} timeslots={timeslots}/>
+    <div className="flex w-full">
+      <div className="p-6">
+        <h1 className="text-4xl mb-4">Curriculums</h1>
+        <p className="mb-4">
+          Curriculums allow you to provide personalised coaching straight to
+          your clients in a customisable video course format.
+        </p>
+        <p className="mb-4">
+          Curriculums are purchased and scheduled right here!
+        </p>
+        <div>
+          <CurriculumGrid makeActive={accountActive} />
+        </div>
+
+        <OrderCurriculum
+          active={active}
+          handlerOrder={accountActive}
+          timeslots={timeslots}
+        />
+      </div>
     </div>
   );
-}
+};
 
 export default Curriculums;
 
 export async function getStaticProps() {
-  const [curricula, timeslots] = await Promise.all([
-    fetch(`${process.env.NEXT_PUBLIC_API_URL}/curricula`).then((r) => r.json()),
-    fetch(`${process.env.NEXT_PUBLIC_API_URL}/timeslots`).then((r) => r.json()),
-  ]);
+  const timeslots = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/timeslots`
+  ).then((r) => r.json());
 
   return {
     props: {
-      curricula,
       timeslots,
     },
   };

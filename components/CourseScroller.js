@@ -1,3 +1,4 @@
+import Link from "next/link";
 import PropTypes from "prop-types";
 import { fromImageToUrl } from "../utils/urls";
 
@@ -6,7 +7,8 @@ const CourseScroller = ({ course }) => {
 
   if (course) {
     return (
-      <a href={`/courses/${course.slug}`}>
+      <Link href={`/courses/${course.slug}`}>
+      <a >
         <div
           className="flex flex-col border w-52 h-72
          my-4 "
@@ -35,7 +37,7 @@ const CourseScroller = ({ course }) => {
             <span className="ml-auto">€{course.price}</span>
           </div>
         </div>
-      </a>
+      </a></Link>
     );
   } else return false;
 };
