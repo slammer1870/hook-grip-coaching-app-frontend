@@ -46,7 +46,7 @@ const CurriculumGrid = ({ makeActive }) => {
         <div className="mr-4 h-60 items-center justify-center w-full">
           <div className="flex flex-col items-center p-6">
             <FontAwesomeIcon icon={faCircleNotch} size="6x" spin />
-            <h2 className="text-4xl mt-4 animate-pulse">Loading</h2>
+            <h2 className="text-4xl mt-4 animate-pulse">Loading...</h2>
           </div>
         </div>
       )}

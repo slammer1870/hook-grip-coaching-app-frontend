@@ -58,7 +58,12 @@ const CourseContent = () => {
   };
 
   if (loading) {
-    return <h1>Loading...</h1>;
+    return (
+      <div className="flex flex-col justify-center items-center w-screen h-screen">
+        <FontAwesomeIcon icon={faCircleNotch} size="6x" spin />
+        <h2 className="text-4xl mt-4 animate-pulse">Loading...</h2>
+      </div>
+    );
   }
   if (!loading && realCourse && realCourse.chapter) {
     return (

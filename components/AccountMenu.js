@@ -50,6 +50,7 @@ const AccountMenu = ({ active, handleAccount }) => {
   if (user && active) {
     return (
       <div className="w-screen h-screen fixed bg-white top-0 flex flex-col p-6 lg:pr-28 overflow-y-scroll">
+        <button onClick={handleAccount} className="lg:w-20 lg:h-screen lg:-left-0 lg:fixed"></button>
         <div className="flex justify-between">
           <Link href="/">
             <a onClick={handleAccount}>

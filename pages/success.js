@@ -58,6 +58,7 @@ export default function Success() {
   return (
     <div className="flex flex-col justify-center items-center w-screen h-screen">
       <FontAwesomeIcon icon={faCircleNotch} size="6x" spin />
+      <h2></h2>
       {loading && (
         <h2 className="text-4xl mt-4 animate-pulse">
           Were confirming your purchase!
