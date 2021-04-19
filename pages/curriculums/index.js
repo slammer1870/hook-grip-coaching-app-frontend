@@ -52,14 +52,12 @@ const Curriculums = ({ timeslots }) => {
 export default Curriculums;
 
 export async function getStaticProps() {
-  const [curricula, timeslots] = await Promise.all([
-    fetch(`${process.env.NEXT_PUBLIC_API_URL}/curricula`).then((r) => r.json()),
-    fetch(`${process.env.NEXT_PUBLIC_API_URL}/timeslots`).then((r) => r.json()),
-  ]);
+  const timeslots = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/timeslots`
+  ).then((r) => r.json());
 
   return {
     props: {
-      curricula,
       timeslots,
     },
   };

@@ -38,7 +38,6 @@ const OrderCurriculum = ({ timeslots, active, handlerOrder }) => {
     console.log(result);
     setBooking(result);
     setLoading(false);
-    //const redirect = await router.push(`/curriculums/confirm/${result.id}`);
   };
 
   console.log(booking);
