@@ -79,6 +79,7 @@ const OrderCurriculum = ({ timeslots, active, handlerOrder }) => {
           </div>
           {!booking && (
             <form onSubmit={handleBooking}>
+              <h1 className="text-2xl mt-4">Schedule your curriculum</h1>
               <label class="block my-4">
                 <span class="text-gray-700">Name</span>
                 <input
@@ -134,6 +135,7 @@ const OrderCurriculum = ({ timeslots, active, handlerOrder }) => {
           )}
           {booking && (
             <div>
+              <h1 className="text-2xl mt-4">{booking.title}</h1>
               <label className="block my-4">
                 <span className="text-gray-700">Name</span>
                 <input
