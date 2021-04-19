@@ -60,5 +60,6 @@ export async function getStaticProps() {
     props: {
       timeslots,
     },
+    revalidate: 1
   };
 }
